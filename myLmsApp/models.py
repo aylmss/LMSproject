@@ -7,21 +7,34 @@ class Teacher(models.Model):
     name = models.CharField(max_length=80)
     age = models.IntegerField()
 
-class Auth(models.Model):
-    user_id=models.IntegerField()
-    login=models.CharField(max_length=25)
-    password=models.CharField(max_length=25) #?????
+class Grade(models.Model):
+    user_id=models.ForeignKey('auth.user', on_delete=models.CASCADE)
+    group_id=models.ForeignKey('auth.group', on_delete=models.CASCADE)
+    problem_id=models.ForeignKey('myLmsApp.problem', on_delete=models.CASCADE)
+    problem_grade=models.IntegerField() 
 
-class Rating(models.Model):
-    user_id=models.IntegerField()
-    name=models.CharField(max_length=25)
-    solved_number=models.IntegerField()
-    total_grade=models.IntegerField() #????
-    rating=models.IntegerField()
+class Module(models.Model):
+    module_id=models.IntegerField()
+    title=models.CharField(max_length=100)
+    m_description=models.CharField(max_length=1000)
 
 class Problem(models.Model):
-    module_id=models.IntegerField()
     problem_id=models.IntegerField()
+    module_id=models.ForeignKey('myLmsApp.module', on_delete=models.CASCADE)
     description=models.CharField(max_length=1000)
-    # input=models.Ta
-    problem_code=models.BinaryField()
+
+class ProblemIO(models.Model):
+    problem_id=models.ForeignKey('myLmsApp.problem', on_delete=models.CASCADE)
+    input=models.CharField(max_length=1000)
+    output=models.CharField(max_length=1000) 
+
+class Chat(models.Model):
+    user_id=models.ForeignKey('auth.user', on_delete=models.CASCADE)
+    message=models.CharField(max_length=1000)
+    date=models.DateField()
+
+class Profile(models.Model):
+    user_id=models.ForeignKey('auth.user', on_delete=models.CASCADE)
+    username=models.CharField(max_length=100)
+    photo=models.ImageField(upload_to ='uploads/')
+    github=models.URLField(max_length = 200)
