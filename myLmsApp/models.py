@@ -12,6 +12,8 @@ class Grade(models.Model):
     group_id=models.ForeignKey('auth.group', on_delete=models.CASCADE)
     problem_id=models.ForeignKey('myLmsApp.problem', on_delete=models.CASCADE)
     problem_grade=models.IntegerField() 
+    class Meta:
+        db_table="table1"
 
 class Module(models.Model):
     module_id=models.IntegerField()
@@ -32,6 +34,8 @@ class Chat(models.Model):
     user_id=models.ForeignKey('auth.user', on_delete=models.CASCADE)
     message=models.CharField(max_length=1000)
     date=models.DateField()
+    class Meta:
+        db_table="table2"
 
 class Profile(models.Model):
     user_id=models.ForeignKey('auth.user', on_delete=models.CASCADE)
