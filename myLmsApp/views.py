@@ -16,9 +16,15 @@ from .models import Grade, Profile, Problem, Chat
 #     model= Problem
 #     template_name= 'problem.html'   #??? kak sdelat; nomer
 
-def mmdv(request):
-    Gradedisplay=Grade.objects.all()
-    Chatdisplay=Chat.objects.all()
-    return render(request, "home.html", {"Grade":Gradedisplay, "Chat":Chatdisplay})
+# def mmdv(request):
+#     Gradedisplay=Grade.objects.all()
+#     Chatdisplay=Chat.objects.all()
+#     return render(request, "home.html", {"Grade":Gradedisplay, "Chat":Chatdisplay})
 
-    
+class mmdv(ListView):
+    model=Grade
+    template_name='home.html'   
+
+class baseView(ListView):
+    model=Grade
+    template_name='base.html'  
