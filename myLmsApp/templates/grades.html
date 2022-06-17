@@ -2,7 +2,7 @@
 {% load static %}
 <html>
   <head>
-    <title>Welcome to HomePage</title>
+    <title>My grades</title>
   </head>
   <body>
     <div>
@@ -15,23 +15,22 @@
         <body>
           <center>
             <h1>My LMS</h1>
-            <h2>HomePage</h2>
-            <h2><a href="{% url 'grades' %}">My grades</a></h2>
-            <h2>Group Rating</h2>
+            <h2><a href="{% url 'base' %}">Back to homepage</a></h2>
+            <hr/>
+            <h2>My grades</h2>
             <table border="1">
               <tr>
                 <th>user_id</th>
-                <th>group_id</th>
                 <th>problem_id</th>
                 <th>problem_grade</th>
               </tr>
-              {% for result in Grade%}
+              {% for result in object_list%}
+              {% if result.user_id == 'Harry' %}
+      
               <tr>
                 <td>
+          
                   {{result.user_id}}
-                </td>
-                <td>
-                  {{result.group_id}}
                 </td>
                 <td>
                   {{result.problem_id}}
@@ -40,33 +39,11 @@
                   {{result.problem_grade}}
                 </td>
               </tr>
+              {% endif %}
+
               {% endfor %}
             </table>
             <hr/>
-            <h2>My chat</h2>
-            <table border="1">
-              <tr>
-                <th>user_id</th>
-                <th>message</th>
-                <th>date</th>
-              </tr>
-              {% for result in Chat%}
-              <tr>
-                <td>
-                  {{result.user_id}}
-                </td>
-                <td>
-                  {{result.message}}
-                </td>
-                <td>
-                  {{result.date}}
-                </td>
-              </tr>
-              {% endfor %}
-        
-            </table>
-            <hr/>
-          </center>
         </body>
 
 

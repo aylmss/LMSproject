@@ -4,9 +4,12 @@ from django.shortcuts import render
 
 from django.views.generic import ListView
 from .models import Grade, Profile, Problem, Chat
-# class gradeListView(ListView):
-#     model = Grade
-#     template_name = 'home.html'
+class gradeListView(ListView):
+    model = Grade
+    template_name = 'grades.html'
+    result_list = Grade.objects.all()
+
+
 
 # class profileView(ListView):
 #     model = Profile

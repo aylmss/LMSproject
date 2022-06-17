@@ -12,8 +12,8 @@ class Grade(models.Model):
     group_id=models.ForeignKey('auth.group', on_delete=models.CASCADE)
     problem_id=models.ForeignKey('myLmsApp.problem', on_delete=models.CASCADE)
     problem_grade=models.IntegerField() 
-    class Meta:
-        db_table="table1"
+    # class Meta:
+    #     db_table="table1"
 
 class Module(models.Model):
     module_id=models.IntegerField()
