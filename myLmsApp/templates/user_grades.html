@@ -20,12 +20,12 @@
             <h2>My grades</h2>
             <table border="1">
               <tr>
-                <th>user_id</th>
+                <th>user</th>
                 <th>problem_id</th>
                 <th>problem_grade</th>
               </tr>
               {% for result in object_list%}
-              {% if result.user_id == 'Harry' %}
+              {% if result.user_id_id == user.id %}
       
               <tr>
                 <td>

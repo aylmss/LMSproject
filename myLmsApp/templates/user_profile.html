@@ -2,7 +2,7 @@
 {% load static %}
 <html>
   <head>
-    <title>Welcome to HomePage</title>
+    <title>My profile</title>
   </head>
   <body>
     <div>
@@ -15,64 +15,39 @@
         <body>
           <center>
             <h1>My LMS</h1>
-            <h2>HomePage</h2>
-            <h2><a href="{% url 'user_grades' %}">My grades</a></h2>
-            <h2>Group Rating</h2>
+            <h2><a href="{% url 'base' %}">Back to homepage</a></h2>
+            <hr/>
+            <h2>My profile</h2>
             <table border="1">
               <tr>
-                <th>user_id</th>
-                <th>group_id</th>
-                <th>problem_id</th>
-                <th>problem_grade</th>
-
+                <th>user</th>
+                <th>username</th>
+                <th>photo</th>
+                <th>github</th>
               </tr>
               {% for result in object_list%}
+              {% if result.user_id_id == user.id %}
+      
               <tr>
                 <td>
+          
                   {{result.user_id}}
                 </td>
                 <td>
-                  {{result.group_id}}
+                  {{result.username}}
                 </td>
                 <td>
-                  {{result.problem_id}}
+                  {{result.photo}}
                 </td>
                 <td>
-                  {{result.problem_grade}}
+                  {{result.github}}
                 </td>
               </tr>
+              {% endif %}
+
               {% endfor %}
             </table>
             <hr/>
-
-            <h2><a href="{% url 'user_profile' %}">My profile</a></h2>    
-            
-            <h1><a href="{% url 'modules' %}">Modules list</a></h1>
-
-            <h2>My chat</h2>
-            <table border="1">
-              <tr>
-                <th>user_id</th>
-                <th>message</th>
-                <th>date</th>
-              </tr>
-              {% for result in Chat%}
-              <tr>
-                <td>
-                  {{result.user_id}}
-                </td>
-                <td>
-                  {{result.message}}
-                </td>
-                <td>
-                  {{result.date}}
-                </td>
-              </tr>
-              {% endfor %}
-        
-            </table>
-            <hr/>
-          </center>
         </body>
 
 

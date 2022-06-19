@@ -2,7 +2,7 @@
 {% load static %}
 <html>
   <head>
-    <title>Welcome to HomePage</title>
+    <title>My grades</title>
   </head>
   <body>
     <div>
@@ -15,64 +15,38 @@
         <body>
           <center>
             <h1>My LMS</h1>
-            <h2>HomePage</h2>
-            <h2><a href="{% url 'user_grades' %}">My grades</a></h2>
-            <h2>Group Rating</h2>
+            <h2><a href="{% url 'base' %}">Back to homepage</a></h2>
+            <hr/>
+            <h2>Content</h2>
             <table border="1">
               <tr>
-                <th>user_id</th>
-                <th>group_id</th>
-                <th>problem_id</th>
-                <th>problem_grade</th>
-
+                <th>module_id</th>
+                <th>title</th>
+                <th>description</th>
+                <th>link</th>
               </tr>
               {% for result in object_list%}
-              <tr>
-                <td>
-                  {{result.user_id}}
-                </td>
-                <td>
-                  {{result.group_id}}
-                </td>
-                <td>
-                  {{result.problem_id}}
-                </td>
-                <td>
-                  {{result.problem_grade}}
-                </td>
-              </tr>
-              {% endfor %}
-            </table>
-            <hr/>
-
-            <h2><a href="{% url 'user_profile' %}">My profile</a></h2>    
             
-            <h1><a href="{% url 'modules' %}">Modules list</a></h1>
+      
+              <tr>
+                <td>
+          
+                  {{result.module_id}}
+                </td>
+                <td>
+                  {{result.title}}
+                </td>
+                <td>
+                  {{result.m_description}}
+                </td>
+                <td>
+                  <a href="{% url 'problems' %}">Problem 1</a>
+                </td>
+              </tr>   
 
-            <h2>My chat</h2>
-            <table border="1">
-              <tr>
-                <th>user_id</th>
-                <th>message</th>
-                <th>date</th>
-              </tr>
-              {% for result in Chat%}
-              <tr>
-                <td>
-                  {{result.user_id}}
-                </td>
-                <td>
-                  {{result.message}}
-                </td>
-                <td>
-                  {{result.date}}
-                </td>
-              </tr>
               {% endfor %}
-        
             </table>
             <hr/>
-          </center>
         </body>
 
 
