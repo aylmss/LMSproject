@@ -12,33 +12,44 @@ class Grade(models.Model):
     group_id=models.ForeignKey('auth.group', on_delete=models.CASCADE)
     problem_id=models.ForeignKey('myLmsApp.problem', on_delete=models.CASCADE)
     problem_grade=models.IntegerField() 
-    class Meta:
-        db_table="table1"
+    # class Meta:
+    #     db_table="table1"
 
 class Module(models.Model):
     module_id=models.IntegerField()
     title=models.CharField(max_length=100)
-    m_description=models.CharField(max_length=1000)
+    m_description=models.TextField()
+
+    def __str__(self):
+        return self.title
 
 class Problem(models.Model):
     problem_id=models.IntegerField()
     module_id=models.ForeignKey('myLmsApp.module', on_delete=models.CASCADE)
-    description=models.CharField(max_length=1000)
+    title=models.CharField(max_length=100)
+    description=models.TextField()
+
+    def __str__(self):
+        return self.title
 
 class ProblemIO(models.Model):
     problem_id=models.ForeignKey('myLmsApp.problem', on_delete=models.CASCADE)
-    input=models.CharField(max_length=1000)
-    output=models.CharField(max_length=1000) 
+    input=models.TextField()
+    output=models.TextField()
 
 class Chat(models.Model):
     user_id=models.ForeignKey('auth.user', on_delete=models.CASCADE)
     message=models.CharField(max_length=1000)
     date=models.DateField()
-    class Meta:
-        db_table="table2"
+    # class Meta:
+    #     db_table="table2"
 
 class Profile(models.Model):
     user_id=models.ForeignKey('auth.user', on_delete=models.CASCADE)
     username=models.CharField(max_length=100)
     photo=models.ImageField(upload_to ='uploads/')
     github=models.URLField(max_length = 200)
+
+    def __str__(self):
+        return self.username
+
