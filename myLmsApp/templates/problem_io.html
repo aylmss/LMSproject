@@ -1,55 +1,75 @@
-<!-- templates/base.html -->
-{% load static %}
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <title>My grades</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+    <title>PyCompiler</title>
   </head>
+
   <body>
-    <div>
-      <header>
-      </header>
-      {% if user.is_authenticated %}
-        <p>Hi {{ user.username }}!</p>
-        <div class="nav-right">
-        </div>
-        <body>
-          <center>
-            <h1>My LMS</h1>
-            <h2><a href="{% url 'base' %}">Back to homepage</a></h2>
-            <h2><a href="{% url 'modules' %}">Back to modules list</a></h2>
-            <h2><a href="{% url 'problems' %}">Back to problems list</a></h2>
-            <hr/>
-            <h2>Module 1 Problem 1</h2>
-            <hr/>
-                     
-              {% for result in object_list%}
-              <h2>{{result.problem_id}}</h2>
-              <hr/>
-              <h2>{{result.input}}</h2>
-              <hr/>
-              <h2>Compiler</h2>
-              <hr/>
-              <h2>{{result.output}}</h2>
-              {% endfor %}
-         
-            <hr/>
-        </body>
+  <div>
+    <header>
+    </header>
+    {% if user.is_authenticated %}
+      <p>Hi {{ user.username }}!</p>
+      <div class="nav-right">
+      </div>
+      <body>
+        <center>
+          <h1>My LMS</h1>
+          <h2><a href="{% url 'base' %}">Back to homepage</a></h2>
+          <h2><a href="{% url 'modules' %}">Back to modules list</a></h2>
+          <h2><a href="{% url 'problems' %}">Back to problems list</a></h2>
+          <hr/>
+          <h2>Module 1 Problem 1</h2>
+          <hr/>
+           
 
 
 
 
-        <p><a href="{% url 'logout' %}">Log out</a></p>
-      {% else %}
-        <p>You are not logged in.</p>
-        <a href="{% url 'login' %}">Log In</a>
-      {% endif %}
-    {% block content %}
-    {% endblock content %}
-    </div>
+  <body style="font-family:Verdana;"><br>
+    <h1 style="text-align:center;">PyCompiler</h1><br>
+
+    <form action="/runcode" method="post">
+      {% csrf_token %}
+  <div class="form-group" style="margin-left:50px;margin-right:50px;">
+    <label for="codearea">Code Area</label>
+    <textarea type="text" class="form-control" id="codearea" name="codearea" rows="10" onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}">{{ code }}</textarea>
+  </div>
+
+  <div class="form-group" style="margin-left:50px;margin-right:50px;">
+    <label for="output">Output</label>
+    <textarea type="text" class="form-control" id="output" name="output" rows="4" disabled> {{ output }} </textarea>
+  </div>
+
+  <button type="submit" class="btn btn-primary" style="margin-left:50px;">Submit</button>
+</form>
+
+
+</body>
+
+
+
+
+<p><a href="{% url 'logout' %}">Log out</a></p>
+{% else %}
+<p>You are not logged in.</p>
+<a href="{% url 'login' %}">Log In</a>
+{% endif %}
+{% block content %}
+{% endblock content %}
+</div>
+
   </body>
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
 </html>
