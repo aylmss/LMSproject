@@ -1,5 +1,9 @@
 from django.urls import path
-from .views import userGradeListView, baseView, profileView, moduleListView, problemListView, problemIOView
+from .views import userGradeListView, baseView, profileView, moduleListView, problemListView
+#problemIOView
+
+from . import views
+
 urlpatterns=[  
     # path('', gradeListView.as_view(), name='home'),
     path('', baseView.as_view(), name='base'),
@@ -7,7 +11,7 @@ urlpatterns=[
     path('user_profile', profileView.as_view(), name='user_profile'),
     path('modules', moduleListView.as_view(), name='modules'),
     path('problems', problemListView.as_view(), name='problems'),
-    path('problem_io', problemIOView.as_view(), name='problem_io'),
+    path('problem_io', views.index, name='problem_io'),
+    path('runcode', views.runcode, name='runcode'),
     #path('home', mmdv.as_view(), name='home'),
-    
 ]
