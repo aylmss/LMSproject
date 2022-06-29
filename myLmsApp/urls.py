@@ -12,6 +12,8 @@ urlpatterns=[
     path('problems', problemListView.as_view(), name='problems'),
     path('problem_io', views.index, name='problem_io'),
     path('runcode', views.runcode, name='runcode'),
-    path('test', problemIOView.as_view(), name='test'),
+    #path('test', problemIOView.as_view(), name='test'),
+    path('chat', views.chat_index, name='chat'),
+    path('chat/<str:room_name>/', views.room, name='room'),
     #path('home', mmdv.as_view(), name='home'),
 ]

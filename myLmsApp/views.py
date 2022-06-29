@@ -73,6 +73,14 @@ def runcode(request):
 
     return render(request , 'problem_io.html', {"code":codeareadata , "output":output})
 
+def chat_index(request):
+    return render(request, 'chat.html')
+
+def room(request, room_name):
+    return render(request, 'room.html', {
+        'room_name': room_name
+    })
+
 # def mmdv(request):
 #     Gradedisplay=Grade.objects.all()
 #     Chatdisplay=Chat.objects.all()
