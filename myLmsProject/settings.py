@@ -32,7 +32,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "myLmsApp",
+    'channels',
+    'myLmsApp',
+    'myLmsProject',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -73,6 +75,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'myLmsProject.wsgi.application'
 
+ASGI_APPLICATION = 'myLmsProject.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -121,10 +124,10 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = 'base'
 LOGOUT_REDIRECT_URL = 'base'
+
