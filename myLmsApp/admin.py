@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Grade, Chat, Module, Problem, ProblemIO, Profile
+from .models import  Chat, Module, Profile, Grade, Problem, ProblemIO
 # Register your models here.
 admin.site.register(Grade)
 admin.site.register(Chat)

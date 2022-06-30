@@ -3,10 +3,6 @@ from django.db import models
 
 # Create your models here.
 
-class Teacher(models.Model):
-    name = models.CharField(max_length=80)
-    age = models.IntegerField()
-
 class Grade(models.Model):
     user_id=models.ForeignKey('auth.user', on_delete=models.CASCADE)
     group_id=models.ForeignKey('auth.group', on_delete=models.CASCADE)
@@ -26,14 +22,14 @@ class Module(models.Model):
 class Problem(models.Model):
     problem_id=models.IntegerField()
     module_id=models.ForeignKey('myLmsApp.module', on_delete=models.CASCADE)
-    title=models.CharField(max_length=100)
-    description=models.TextField()
 
     def __str__(self):
-        return self.title
+        return str(self.problem_id)
 
 class ProblemIO(models.Model):
     problem_id=models.ForeignKey('myLmsApp.problem', on_delete=models.CASCADE)
+    problem_title=models.CharField(max_length=100)
+    description=models.TextField()
     input=models.TextField()
     output=models.TextField()
 
