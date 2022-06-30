@@ -5,8 +5,8 @@ from django.shortcuts import render
 
 # Create your views here.
 
-from django.views.generic import ListView
-from .models import Grade, Profile, Problem, Chat, Module, ProblemIO
+from django.views.generic import ListView, DetailView
+from .models import Profile,  Chat, Module, Problem, ProblemIO,  Grade
 
 class baseView(ListView):
     model=Grade
@@ -30,12 +30,11 @@ class moduleListView(ListView):
 class problemListView(ListView):
     model= Problem
     template_name= 'problems.html'   #??? kak sdelat; nomer
-    result_list=Problem.objects.all()
+    #result_list=Problem.objects.all()
 
-class problemIOView(ListView):
+class problemIOView(DetailView):
     model= ProblemIO
-    template_name= 'problem_io.html'   #??? kak sdelat; nomer
-    result_list=ProblemIO.objects.all()
+    template_name= 'problem_io_detail.html'   
 
 def index(request):
     return render(request, 'problem_io.html')

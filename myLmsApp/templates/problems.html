@@ -21,37 +21,26 @@
             <h2>Module 1 Problems list</h2>
             <table border="1">
               <tr>
-                <th>module_id_id</th>
-                <th>module_id</th>
+               
+             
                 <th>title</th>
-                <th>description</th>
-                <th>link</th>
+                <th>title</th>
+                <th>title</th>
+              
+                
+                
               </tr>
               {% for result in object_list%}
             
       
-              <tr>
+                
+                
+                
                 <td>
-                  {{result.module_id_id}}
+                  {{result.id}}
                 </td>
-                <td>
-                  {{result.module_id}}
-                </td>
-                <td>
-                  {{result.title}}
-                </td>
-                <td>
-                  {{result.description}}
-                </td>
-                <td>
-                  {{result.description}}
-                </td>
-                <td>
-                  <a href="{% url 'problem_io' %}">Problem 1</a>
-                </td> 
-              </tr>
-
-              
+               
+           
 
               {% endfor %}
             </table>
