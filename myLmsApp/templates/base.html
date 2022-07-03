@@ -2,27 +2,30 @@
 {% load static %}
 <html>
   <head>
-    <title>Welcome to HomePage</title>
+    <title>Welcome to Student LMS</title>
   </head>
   <body>
     <div>
       <header>
       </header>
       {% if user.is_authenticated %}
-        <p>Hi {{ user.username }}!</p>
+        <h1>Hi {{ user.username }}!</h1>
         <div class="nav-right">
         </div>
         <body>
           <center>
             <h1>My LMS</h1>
-            <h2>HomePage</h2>
+            <img alt="Qries" src="https://free4kwallpapers.com/uploads/originals/2020/05/02/morgan-codes-wallpaper.png" width=800" height="200">
+            <p style="width:500px">The Learning Management System (LMS) is a robust platform that holds course content, materials and administration in one user-friendly online system. It allows teachers to easily manage classes and track their students' progress, highlighting areas of strength and weakness for ongoing performance improvement.</>
             <h2><a href="{% url 'user_grades' %}">My grades</a></h2>
             <h2>Group Rating</h2>
             <table border="1">
               <tr>
                 <th>user_id</th>
                 <th>group_id</th>
+                <th>module_id</th>
                 <th>problem_id</th>
+                <th>problem_title</th>
                 <th>problem_grade</th>
 
               </tr>
@@ -35,7 +38,13 @@
                   {{result.group_id}}
                 </td>
                 <td>
+                  {{result.module_id}}
+                </td>
+                <td>
                   {{result.problem_id}}
+                </td>
+                <td>
+                  {{result.problem_title}}
                 </td>
                 <td>
                   {{result.problem_grade}}
@@ -45,31 +54,13 @@
             </table>
             <hr/>
 
-            <h2><a href="{% url 'user_profile' %}">My profile</a></h2>    
+            <h1><a href="{% url 'user_profile' %}">My profile</a></h1>    
             
             <h1><a href="{% url 'modules' %}">Modules list</a></h1>
 
-            <h2>My chat</h2>
+           
             <h1><a href="{% url 'chat' %}">My chat</a></h1>
-            <table border="1">
-              <tr>
-                <th>user_id</th>
-                <th>message</th>
-                <th>date</th>
-              </tr>
-              {% for result in Chat%}
-              <tr>
-                <td>
-                  {{result.user_id}}
-                </td>
-                <td>
-                  {{result.message}}
-                </td>
-                <td>
-                  {{result.date}}
-                </td>
-              </tr>
-              {% endfor %}
+            
         
             </table>
             <hr/>
