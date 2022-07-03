@@ -13,40 +13,30 @@
         <div class="nav-right">
         </div>
         <body>
-          <center>
+          <left>
             <h1>My LMS</h1>
             <h2><a href="{% url 'base' %}">Back to homepage</a></h2>
             <hr/>
             <h2>My profile</h2>
-            <table border="1">
-              <tr>
-                <th>user</th>
-                <th>username</th>
-                <th>photo</th>
-                <th>github</th>
-              </tr>
+           
               {% for result in object_list%}
               {% if result.user_id_id == user.id %}
       
-              <tr>
-                <td>
-          
-                  {{result.user_id}}
-                </td>
-                <td>
-                  {{result.username}}
-                </td>
-                <td>
-                  {{result.photo}}
-                </td>
-                <td>
-                  {{result.github}}
-                </td>
-              </tr>
+           
+                  <p> {{result.user_id}}</p>
+             
+              <p> {{result.username}}</p>
+                 
+              <img src="{{result.photo}}" alt="Profile picture">
+                  
+                
+                  <p>Github Profile: <a href=" {{result.github}} ">{{result.github}}</a></p>
+               
+              
               {% endif %}
 
               {% endfor %}
-            </table>
+         
             <hr/>
         </body>
 

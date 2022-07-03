@@ -22,25 +22,28 @@
             <table border="1">
               <tr>
                
+                <th>module_id</th>
+                <th>title</th>
              
-                <th>title</th>
-                <th>title</th>
-                <th>title</th>
-              
-                
-                
+                <th>link</th>
               </tr>
               {% for result in object_list%}
             
       
-                
-                
-                
+              <tr>
                 <td>
-                  {{result.id}}
+                  {{result.module_id}}
                 </td>
-               
-           
+                <td>
+                  {{result.problem_id}}
+                </td>
+              
+                <td>
+                  <a href="{% url 'problem_detail' result.problem_id %}">Problem {{result.problem_id}}</a>
+                </td> 
+              </tr>
+
+              
 
               {% endfor %}
             </table>

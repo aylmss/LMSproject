@@ -1,21 +1,22 @@
 import sys
 
-from modulefinder import Module
+#from modulefinder import Module
 from django.shortcuts import render
 
 # Create your views here.
 
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, UpdateView
 from .models import Profile,  Chat, Module, Problem, ProblemIO,  Grade
 
 class baseView(ListView):
     model=Grade
     template_name='base.html'  
+    result_list=Grade.objects.all().order_by('-problem_grade').values()
 
 class userGradeListView(ListView):
     model = Grade
     template_name = 'user_grades.html'
-    result_list = Grade.objects.all()
+    result_list=Grade.objects.all()
 
 class profileView(ListView):
     model = Profile
@@ -34,10 +35,7 @@ class problemListView(ListView):
 
 class problemIOView(DetailView):
     model= ProblemIO
-    template_name= 'problem_io_detail.html'   
-
-def index(request):
-    return render(request, 'problem_io.html')
+    template_name= 'problem_detail.html'   
 
 def runcode(request):
     
@@ -50,6 +48,7 @@ def runcode(request):
             original_stdout = sys.stdout
             sys.stdout = open('file.txt', 'w') #change the standard output to the file we created
 
+            qwerty=sys.stdout
             #execute code
 
             exec(codeareadata)  #example =>   print("hello world")
@@ -70,7 +69,13 @@ def runcode(request):
 
     #finally return and render index page and send codedata and output to show on page
 
-    return render(request , 'problem_io.html', {"code":codeareadata , "output":output})
+    return render(request , 'problem_detail.html', {"code":codeareadata , "output":output})
+
+class problemIOUpdateView(UpdateView):
+    model = ProblemIO
+    template_name = 'problem_update.html'
+    fields = ['output']
+
 
 def chat_index(request):
     return render(request, 'chat.html')
@@ -80,11 +85,10 @@ def room(request, room_name):
         'room_name': room_name
     })
 
-# def mmdv(request):
-#     Gradedisplay=Grade.objects.all()
-#     Chatdisplay=Chat.objects.all()
-#     Profiledisplay=Profile.objects.all()
-#     return render(request, "base.html", {"Grade":Gradedisplay, "Chat":Chatdisplay, "Profile":Profiledisplay})
+def mmdv(request):
+    Gradedisplay=Grade.objects.all()
+    Profiledisplay=Profile.objects.all()
+    return render(request, "base2.html", {"Grade":Gradedisplay,  "Profile":Profiledisplay})
 
 # class mmdv(ListView):
 #     model=Grade
